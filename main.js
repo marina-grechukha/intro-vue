@@ -4,7 +4,7 @@ const app = new Vue({
         product: 'Cat',
         image: './assets/red-cat.jpg',
         link: 'https://unsplash.com/collections/33304287/the-cats-',
-        inStock: true,
+        inStock: false,
         onSale: true,
         details: ['99% fur', '1% claws', 'Gender-neutral'],
         variants: [
@@ -28,8 +28,5 @@ const app = new Vue({
         updateProduct(variantImage) {
             this.image = variantImage
         },
-        removeFromCart() {
-            this.cart -= 1
-        }
     }
 })
