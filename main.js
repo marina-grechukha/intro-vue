@@ -10,13 +10,26 @@ const app = new Vue({
         variants: [
             {
                 variantId: 2234,
-                variantColor: 'red'
+                variantColor: 'red',
+                variantImage: './assets/red-cat.jpg'
             },
             {
                 variantId: 2235,
-                variantColor: 'gray'
+                variantColor: 'gray',
+                variantImage: './assets/gray-cat.jpg'
             }
         ],
-        sizes: ['small', 'big', 'king-size']
+        cart: 0
+    },
+    methods: {
+        addToCart() {
+            this.cart += 1
+        },
+        updateProduct(variantImage) {
+            this.image = variantImage
+        },
+        removeFromCart() {
+            this.cart -= 1
+        }
     }
 })
