@@ -17,11 +17,11 @@
     </div>
 
     <div class="product-info">
-      <h1>{{ product }}</h1>
+      <h1>{{ title }}</h1>
       <a :href="link" target="_blank">More cats like this</a>
       <p v-if="inStock">In Stock</p>
       <p v-else :class="{ outOfStock: !inStock }">Out of Stock</p>
-      <span v-if="onSale">On Sale!</span>
+      <p>{{ sale }}</p>
 
       <p>Details:</p>
       <ul>
@@ -29,11 +29,11 @@
       </ul>
 
       <p>Colors:</p>
-      <div v-for="variant in variants"
+      <div v-for="(variant, index) in variants"
            :key="variant.variantId"
            class="color-box"
            :style="{ backgroundColor: variant.variantColor }"
-           @mouseover="updateProduct(variant.variantImage)"
+           @mouseover="updateProduct(index)"
       >
       </div>
 
