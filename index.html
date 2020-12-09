@@ -9,15 +9,16 @@
 <div class="nav-bar"></div>
 
 <div id="app">
+  <div class="cart">
+    <p>Cart({{ cart.length }})</p>
+  </div>
   <product
           :premium="premium"
           @add-to-cart="addToCart"
           @remove-from-cart="removeFromCart"
   >
   </product>
-  <div class="cart">
-    <p>Cart({{ cart.length }})</p>
-  </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
