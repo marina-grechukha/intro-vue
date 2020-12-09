@@ -34,7 +34,7 @@ Vue.component('product', {
         <a :href="link" target="_blank">More cats like this</a>
         <p v-if="inStock">In Stock</p>
         <p v-else :class="{ outOfStock: !inStock }">Out of Stock</p>
-        <p>{{ sale }}</p>
+        <p>Shipping: {{ shipping }}</p>
         
         <product-details :details="details"></product-details>
   
@@ -53,10 +53,10 @@ Vue.component('product', {
         >
           Add to cart
         </button>
-  
-        <div class="cart">
-          <p>Cart({{ cart }})</p>
-        </div>
+        
+        <button @click="removeFromCart">
+          Remove from cart
+        </button>
       </div>
   
     </div>
@@ -80,15 +80,17 @@ Vue.component('product', {
             variantId: 2235,
             variantColor: 'gray',
             variantImage: './assets/gray-cat.jpg',
-            variantQuantity: 0
+            variantQuantity: 10
           }
         ],
-        cart: 0
       }
     },
       methods: {
         addToCart() {
-          this.cart += 1
+          this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId)
+        },
+        removeFromCart() {
+          this.$emit('remove-from-cart', this.variants[this.selectedVariant].variantId)
         },
         updateProduct: function (index) {
           this.selectedVariant = index
@@ -116,6 +118,19 @@ Vue.component('product', {
 const app = new Vue({
   el: '#app',
   data: {
-    premium: true
+    premium: true,
+    cart: []
+  },
+  methods: {
+    addToCart(id) {
+      this.cart.push(id)
+    },
+    removeFromCart(id) {
+      for (let i = this.cart.length - 1; i >= 0; i--) {
+        if (this.cart[i] === id) {
+          this.cart.splice(i, 1)
+        }
+      }
+    }
   }
 })
